@@ -17,7 +17,7 @@ def generate(input_path, output_path, resolution, duration=3.0, style="dark", fo
     if input_path.is_dir():
         images = sorted([img for img in glob.glob(os.path.join(input_path, "*")) if img.lower().endswith((".png",".jpg",".jpeg",".webp"))])
         if not images: raise ValueError(f"No images in {input_path}")
-        clips = [ImageClip(img).resize(newsize=(w,h)).with_duration(duration) for img in images]
+        clips = [ImageClip(img).resized(new_size=(w,h)).with_duration(duration) for img in images]
         video = concatenate_videoclips(clips, method="compose") if len(clips) > 1 else clips[0]
     elif input_path.is_file():
         with open(input_path, "r", encoding="utf-8") as f:

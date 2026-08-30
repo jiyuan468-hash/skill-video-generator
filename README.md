@@ -4,13 +4,13 @@ An automated video generation skill for Codex. Create videos from text, images, 
 
 ## Modes
 
-- **Template**: Text and images → video (subtitles, slideshows)
+- **Template**: Text and images  video (subtitles, slideshows)
 - **Code**: Programmatic animation (motion graphics, shapes)
 - **AI**: External API generation (Runway, Pika, Stability AI)
 
 ## Quick Start
 
-`ash
+`ash
 # Install dependencies
 pip install moviepy pillow ffmpeg-python numpy requests
 
@@ -29,31 +29,32 @@ python scripts/generate.py --mode ai --prompt \"sunset\" --output video.mp4
 
 ## Output Formats
 
-- --format 16:9 — YouTube, desktop (1920×1080)
-- --format 9:16 — TikTok, Reels, Shorts (1080×1920)
-- --format 1:1 — Instagram feed (1080×1080)
+- --format 16:9  YouTube, desktop (19201080)
+- --format 9:16  TikTok, Reels, Shorts (10801920)
+- --format 1:1  Instagram feed (10801080)
 
 ## Requirements
 
 - Python 3.10+
-- FFmpeg (installed separately: rew install ffmpeg or from https://ffmpeg.org)
-- API keys for AI mode (see eferences/api-keys.md)
+- FFmpeg (installed separately: rew install ffmpeg or from https://ffmpeg.org)
+- API keys for AI mode (see 
+eferences/api-keys.md)
 
 ## Project Structure
 
 `
 skill-video-generator/
-├── SKILL.md              # Skill instructions
-├── scripts/
-│   ├── generate.py       # Entry point
-│   ├── template_mode.py  # Template/text-to-video
-│   ├── code_mode.py      # Code animation
-│   └── ai_mode.py        # AI generation
-├── references/
-│   ├── modes.md          # Mode documentation
-│   └── api-keys.md       # API key setup
-└── assets/
-    └── templates/        # Style templates
+ SKILL.md              # Skill instructions
+ scripts/
+    generate.py       # Entry point
+    template_mode.py  # Template/text-to-video
+    code_mode.py      # Code animation
+    ai_mode.py        # AI generation
+ references/
+    modes.md          # Mode documentation
+    api-keys.md       # API key setup
+ assets/
+     templates/        # Style templates
 `
 
 ## License

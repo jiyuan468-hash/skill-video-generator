@@ -1,0 +1,5 @@
+moviepy>=2.0
+pillow
+ffmpeg-python
+numpy
+requests

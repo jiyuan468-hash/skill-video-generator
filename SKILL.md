@@ -5,26 +5,26 @@ description: Generate videos from text, images, or code using three modes: templ
 
 # Skill Video Generator
 
-Generate videos programmatically. Supports three modes—**template**, **AI**, and **code**—with configurable output formats.
+Generate videos programmatically. Supports three modes**template**, **AI**, and **code**with configurable output formats.
 
 ## Mode Selection
 
 | Mode | When to use | Input |
 |------|-------------|-------|
-| 	emplate | Subtitles, photo slideshows, text animations | Text, images, style preset |
-| i | AI-generated video from prompts | Text prompt, aspect ratio, API key |
+| template | Subtitles, photo slideshows, text animations | Text, images, style preset |
+| i | AI-generated video from prompts | Text prompt, aspect ratio, API key |
 | code | Programmatic animations, motion graphics | Script or parameters, aspect ratio |
 
 ## Quick Start
 
-`ash
+`ash
 python scripts/generate.py --mode template --input text.txt --output video.mp4
 python scripts/generate.py --mode template --input images/*.png --output video.mp4 --format 9:16
 python scripts/generate.py --mode code --script draw.py --output video.mp4
 python scripts/generate.py --mode ai --prompt "a sunset over the ocean" --output video.mp4 --aspect 16:9
 `
 
-## Template Mode
+## Ttemplate Mode
 
 Uses **moviepy** to compose videos from images or text overlays.
 
@@ -70,31 +70,31 @@ eferences/api-keys.md.
 
 ## Output Formats
 
-- 16:9 — YouTube, desktop (1920×1080)
-- 9:16 — TikTok, Reels, Shorts (1080×1920)
-- 1:1 — Instagram feed (1080×1080)
-- 4:3 — Traditional (800×600)
+- 16:9  YouTube, desktop (19201080)
+- 9:16  TikTok, Reels, Shorts (10801920)
+- 1:1  Instagram feed (10801080)
+- 4:3  Traditional (800600)
 
 ## Project Structure
 
 `
 skill-video-generator/
-├── SKILL.md
-├── scripts/
-│   ├── generate.py          # Unified entry point
-│   ├── template_mode.py     # Template/text-to-video
-│   ├── code_mode.py         # Code animation
-│   └── ai_mode.py           # AI API generation
-├── references/
-│   ├── modes.md             # Detailed mode guide
-│   └── api-keys.md          # API key setup
-└── assets/
-    └── templates/           # Default style templates
+ SKILL.md
+ scripts/
+    generate.py          # Unified entry point
+    template_mode.py     # Ttemplate/text-to-video
+    code_mode.py         # Code animation
+    ai_mode.py           # AI API generation
+ references/
+    modes.md             # Detailed mode guide
+    api-keys.md          # API key setup
+ assets/
+     templates/           # Default style templates
 `
 
 ## Dependencies
 
-`ash
+`ash
 # Core (template & code modes)
 pip install moviepy>=2.0 pillow ffmpeg-python numpy
 
@@ -104,7 +104,7 @@ pip install moviepy>=2.0 pillow ffmpeg-python numpy
 
 ## Validation
 
-`ash
+`ash
 python scripts/generate.py --mode template --input text.txt --output test.mp4 --format 16:9
 `
 
