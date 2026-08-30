@@ -3,3 +3,5 @@ pillow
 ffmpeg-python
 numpy
 requests
+pyttsx3
+soundfile

@@ -1,0 +1,11 @@
+# Platform: Bilibili
+# Format: 16:9 (1920x1080)
+# Type: 干货教程开场
+# Duration: ~15s total (3s per scene)
+
+本期带来超详细教程
+从零基础到精通
+全程高能无废话
+记得一键三连
+我们开始吧
+"# Bilibili 干货教程

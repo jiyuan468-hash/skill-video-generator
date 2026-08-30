@@ -1,0 +1,11 @@
+# Platform: Instagram Reels
+# Format: 9:16 (1080x1920)
+# Type: Product launch
+# Duration: ~15s total (3s per scene)
+
+Something new is coming
+Introducing [Product Name]
+Designed for [audience]
+Available now
+Shop the link in bio
+"# Instagram Product Launch

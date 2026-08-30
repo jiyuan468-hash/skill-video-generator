@@ -1,0 +1,11 @@
+# Platform: TikTok
+# Format: 9:16 (1080x1920)
+# Type: Day in the life
+# Duration: ~15s total (3s per scene)
+
+Come with me to work
+Morning coffee routine
+Deep work session
+Lunch break
+Time to ship
+"# TikTok Day in Life

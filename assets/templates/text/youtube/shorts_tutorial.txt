@@ -1,0 +1,11 @@
+# Platform: YouTube Shorts
+# Format: 9:16 (1080x1920)
+# Type: Tutorial snippet
+# Duration: ~12s total (3s per scene)
+
+Quick tutorial
+Step 1: Open settings
+Step 2: Find the option
+Step 3: Save and done
+That's it!
+"# YouTube Shorts Tutorial

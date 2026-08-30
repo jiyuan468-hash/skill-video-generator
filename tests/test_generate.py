@@ -79,3 +79,14 @@ def test_platform_templates_exist():
         assert os.path.isdir(text_dir), f'Missing text templates for {plat}'
         code_dir = os.path.join(base, 'code', plat)
         assert os.path.isdir(code_dir), f'Missing code templates for {plat}'
+
+
+def test_code_mode_new_shapes():
+    from code_mode import draw_frame
+    import numpy as np
+    frame = draw_frame(400, 300, 0.5, 30, {"shape": "triangle", "radius": 60, "bg_color": (0,0,0)})
+    assert frame.shape == (300, 400, 3)
+    frame2 = draw_frame(400, 300, 0.5, 30, {"shape": "star", "radius": 60, "bg_color": (0,0,0)})
+    assert frame2.shape == (300, 400, 3)
+    frame3 = draw_frame(400, 300, 0.5, 30, {"shape": "particles", "radius": 50, "bg_color": (0,0,0)})
+    assert frame3.shape == (300, 400, 3)
