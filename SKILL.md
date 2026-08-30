@@ -55,7 +55,8 @@ Uses **ffmpeg-python** and **PIL** to generate frames programmatically, then com
 
 ## AI Mode
 
-Calls external AI video APIs. Requires an API key configured in eferences/api-keys.md.
+Calls external AI video APIs. Requires an API key configured in 
+eferences/api-keys.md.
 
 **Supported providers:**
 - Runway Gen-3 (RUNWAY_API_KEY)
@@ -95,7 +96,7 @@ skill-video-generator/
 
 `ash
 # Core (template & code modes)
-pip install moviepy pillow ffmpeg-python numpy
+pip install moviepy>=2.0 pillow ffmpeg-python numpy
 
 # AI mode (optional, uncomment provider as needed)
 # pip install requests
@@ -107,4 +108,6 @@ pip install moviepy pillow ffmpeg-python numpy
 python scripts/generate.py --mode template --input text.txt --output test.mp4 --format 16:9
 `
 
-See eferences/modes.md for detailed examples and eferences/api-keys.md for API configuration.
+See 
+eferences/modes.md for detailed examples and 
+eferences/api-keys.md for API configuration.
