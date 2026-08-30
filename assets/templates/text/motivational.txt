@@ -1,0 +1,9 @@
+# Motivational Quote Generator
+# One quote per scene
+
+"""
+Dream big
+Work hard
+Stay focused
+Never give up
+Success is a journey
