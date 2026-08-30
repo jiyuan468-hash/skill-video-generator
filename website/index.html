@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Video Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+    .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 40px 20px; text-align: center; border-bottom: 1px solid #2a2a4a; }
+    .header h1 { font-size: 2.5rem; background: linear-gradient(90deg, #00d4ff, #7b2dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .header p { color: #888; font-size: 1rem; }
+    .nav { display: flex; justify-content: center; gap: 10px; padding: 20px; flex-wrap: wrap; }
+    .nav-btn { padding: 10px 24px; border: 1px solid #2a2a4a; background: #1a1a2e; color: #aaa; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+    .nav-btn:hover, .nav-btn.active { background: #7b2dff; color: #fff; border-color: #7b2dff; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 20px; transition: all 0.3s; cursor: pointer; }
+    .card:hover { border-color: #7b2dff; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(123,45,255,0.2); }
+    .card-platform { font-size: 0.75rem; color: #7b2dff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .card-title { font-size: 1.1rem; color: #fff; margin-bottom: 6px; }
+    .card-desc { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
+    .card-tag { display: inline-block; padding: 3px 10px; background: #2a2a4a; border-radius: 20px; font-size: 0.75rem; color: #aaa; margin-right: 5px; }
+    .card-tag.type-text { background: #1a3a2e; color: #4ade80; }
+    .card-tag.type-code { background: #3a1a2e; color: #f472b6; }
+    .stats { display: flex; justify-content: center; gap: 40px; padding: 30px; background: #1a1a2e; margin: 20px 0; border-radius: 12px; }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: bold; background: linear-gradient(90deg, #00d4ff, #7b2dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 0.85rem; color: #888; margin-top: 4px; }
+    .code-block { background: #0d0d1a; border: 1px solid #2a2a4a; border-radius: 8px; padding: 15px; font-family: 'Consolas', monospace; font-size: 0.85rem; color: #4ade80; margin-top: 10px; word-break: break-all; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; }
+    .modal.show { display: flex; }
+    .modal-content { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 16px; padding: 30px; max-width: 500px; width: 90%; }
+    .modal h2 { color: #fff; margin-bottom: 15px; }
+    .modal-close { float: right; cursor: pointer; color: #888; font-size: 1.5rem; }
+    .modal-close:hover { color: #fff; }
+    .btn-copy { background: #7b2dff; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-top: 15px; width: 100%; }
+    .btn-copy:hover { background: #6a1ff0; }
+    .search { max-width: 400px; margin: 0 auto 20px; padding: 12px 20px; background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 8px; color: #fff; font-size: 1rem; }
+    .search:focus { outline: none; border-color: #7b2dff; }
+    .search::placeholder { color: #555; }
+    .platform-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
+    .platform-card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .platform-card:hover { border-color: #00d4ff; transform: scale(1.05); }
+    .platform-card.active { border-color: #00d4ff; background: #1a2a3e; }
+    .platform-icon { font-size: 2rem; margin-bottom: 8px; }
+    .platform-name { font-size: 0.9rem; color: #fff; }
+    .platform-count { font-size: 0.75rem; color: #888; margin-top: 4px; }
+    .footer { text-align: center; padding: 40px; color: #555; font-size: 0.85rem; }
+    .footer a { color: #7b2dff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Video Generator</h1>
+    <p>自动生成视频 · 8大平台 · 44+模板</p>
+  </div>
+
+  <div class="container">
+    <div class="stats">
+      <div class="stat-item"><div class="stat-num" id="total">44</div><div class="stat-label">文本模板</div></div>
+      <div class="stat-item"><div class="stat-num" id="total2">16</div><div class="stat-label">动画模板</div></div>
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">平台覆盖</div></div>
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">测试通过</div></div>
+    </div>
+
+    <div class="nav">
+      <button class="nav-btn active" onclick="filterPlatform('all')">全部</button>
+      <button class="nav-btn" onclick="filterPlatform('douyin')">抖音</button>
+      <button class="nav-btn" onclick="filterPlatform('tiktok')">TikTok</button>
+      <button class="nav-btn" onclick="filterPlatform('youtube')">YouTube</button>
+      <button class="nav-btn" onclick="filterPlatform('instagram')">Instagram</button>
+      <button class="nav-btn" onclick="filterPlatform('linkedin')">LinkedIn</button>
+      <button class="nav-btn" onclick="filterPlatform('bilibili')">Bilibili</button>
+      <button class="nav-btn" onclick="filterPlatform('x')">X</button>
+      <button class="nav-btn" onclick="filterPlatform('facebook')">Facebook</button>
+      <button class="nav-btn" onclick="filterPlatform('pinterest')">Pinterest</button>
+    </div>
+
+    <input class="search" type="text" placeholder="搜索模板..." oninput="searchTemplates(this.value)">
+
+    <div class="grid" id="templateGrid"></div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc" style="color:#888;margin-bottom:15px;"></p>
+      <div id="modalCommand" class="code-block"></div>
+      <button class="btn-copy" onclick="copyCommand()">复制命令</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>GitHub: <a href="https://github.com/jiyuan468-hash/skill-video-generator">jiyuan468-hash/skill-video-generator</a></p>
+  </div>
+
+<script>
+const templates = [
+  // Douyin
+  {platform:'douyin', type:'text', title:'爆款钩子', desc:'停！刷到这里别划走', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/viral_hook.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'text', title:'知识科普', desc:'99%的人都不知道这个冷知识', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/knowledge.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'text', title:'Vlog开场', desc:'今天带你们去一个地方', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/vlog_intro.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'text', title:'手把手教程', desc:'第一步到第四步', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/tutorial.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'text', title:'关注引导', desc:'点赞收藏关注我', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/follow_guide.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'text', title:'产品种草', desc:'这款神器真的绝了', cmd:'python scripts/generate.py --mode template --input assets/templates/text/douyin/product_shuang.txt --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'code', title:'品牌片头', desc:'黑底红字品牌展示', cmd:'python scripts/generate.py --mode code --script assets/templates/code/douyin/brand_intro.py --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'code', title:'霓虹脉冲', desc:'霓虹圆环脉冲动效', cmd:'python scripts/generate.py --mode code --script assets/templates/code/douyin/neon_pulse.py --output video.mp4 --format 9:16'},
+  {platform:'douyin', type:'code', title:'点赞爆炸', desc:'粒子爆炸特效', cmd:'python scripts/generate.py --mode code --script assets/templates/code/douyin/like_burst.py --output video.mp4 --format 9:16'},
+  // TikTok
+  {platform:'tiktok', type:'text', title:'病毒钩子', desc:'POV: 你终于发现了这个', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/hook_viral.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'text', title:'前后对比', desc:'Before vs After', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/transformation.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'text', title:'清单推荐', desc:'N个你不知道的网站', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/listicle.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'text', title:'打破迷思', desc:'别再相信这个谣言了', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/mythbust.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'text', title:'热门梗', desc:'当代码终于跑通了', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/trending_sound.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'text', title:'故事时间', desc:'我的第一份工作', cmd:'python scripts/generate.py --mode template --input assets/templates/text/tiktok/storytime.txt --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'code', title:'霓虹脉冲', desc:'霓虹灯效果', cmd:'python scripts/generate.py --mode code --script assets/templates/code/tiktok/neon_pulse.py --output video.mp4 --format 9:16'},
+  {platform:'tiktok', type:'code', title:'故障关注', desc:'Glitch故障风', cmd:'python scripts/generate.py --mode code --script assets/templates/code/tiktok/glitch_follow.py --output video.mp4 --format 9:16'},
+  // YouTube
+  {platform:'youtube', type:'text', title:'视频片头', desc:'Welcome to my channel', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/intro.txt --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'text', title:'视频片尾', desc:'Thanks for watching', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/outro.txt --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'text', title:'教程步骤', desc:'Step by step guide', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/howto_steps.txt --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'text', title:'Top 5 榜单', desc:'Top 5 tips', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/top5.txt --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'text', title:'链接卡片', desc:'Links in description', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/links.txt --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'text', title:'Shorts 钩子', desc:'Stop scrolling', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/shorts_hook.txt --output video.mp4 --format 9:16'},
+  {platform:'youtube', type:'text', title:'Shorts 日常', desc:'A day in the life', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/shorts_dailylife.txt --output video.mp4 --format 9:16'},
+  {platform:'youtube', type:'text', title:'Shorts 冷知识', desc:'Did you know?', cmd:'python scripts/generate.py --mode template --input assets/templates/text/youtube/shorts_fact.txt --output video.mp4 --format 9:16'},
+  {platform:'youtube', type:'code', title:'频道片头', desc:'Brand intro', cmd:'python scripts/generate.py --mode code --script assets/templates/code/youtube/intro_anim.py --output video.mp4 --format 16:9'},
+  {platform:'youtube', type:'code', title:'Shorts 闪光', desc:'Flash effect', cmd:'python scripts/generate.py --mode code --script assets/templates/code/youtube/shorts_flash.py --output video.mp4 --format 9:16'},
+  // Instagram
+  {platform:'instagram', type:'text', title:'生活方式 Reels', desc:'Morning routine', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/reels_lifestyle.txt --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'text', title:'产品展示 Reels', desc:'Product showcase', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/reels_product.txt --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'text', title:'幕后花絮 Reels', desc:'Behind the scenes', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/reels_bts.txt --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'text', title:'投票互动 Stories', desc:'Poll', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/story_poll.txt --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'text', title:'倒计时 Stories', desc:'Countdown', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/story_countdown.txt --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'text', title:'语录 Feed', desc:'Quote of the day', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/feed_quote.txt --output video.mp4 --format 1:1'},
+  {platform:'instagram', type:'text', title:'技巧 Feed', desc:'5 tips', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/feed_tips.txt --output video.mp4 --format 1:1'},
+  {platform:'instagram', type:'text', title:'个人品牌 Feed', desc:'Portfolio', cmd:'python scripts/generate.py --mode template --input assets/templates/text/instagram/feed_portfolio.txt --output video.mp4 --format 4:5'},
+  {platform:'instagram', type:'code', title:'渐变波浪', desc:'Gradient wave', cmd:'python scripts/generate.py --mode code --script assets/templates/code/instagram/gradient_wave.py --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'code', title:'上滑引导', desc:'Swipe up', cmd:'python scripts/generate.py --mode code --script assets/templates/code/instagram/swipe_up.py --output video.mp4 --format 9:16'},
+  {platform:'instagram', type:'code', title:'Feed 卡片', desc:'Feed card', cmd:'python scripts/generate.py --mode code --script assets/templates/code/instagram/feed_card.py --output video.mp4 --format 1:1'},
+  // LinkedIn
+  {platform:'linkedin', type:'text', title:'专业动态', desc:'I\'m excited to announce', cmd:'python scripts/generate.py --mode template --input assets/templates/text/linkedin/professional_update.txt --output video.mp4 --format 16:9'},
+  {platform:'linkedin', type:'text', title:'行业洞察', desc:'3 trends to watch', cmd:'python scripts/generate.py --mode template --input assets/templates/text/linkedin/industry_insights.txt --output video.mp4 --format 16:9'},
+  {platform:'linkedin', type:'text', title:'企业文化', desc:'Why I love working here', cmd:'python scripts/generate.py --mode template --input assets/templates/text/linkedin/company_culture.txt --output video.mp4 --format 16:9'},
+  {platform:'linkedin', type:'text', title:'案例研究', desc:'How we increased revenue', cmd:'python scripts/generate.py --mode template --input assets/templates/text/linkedin/case_study.txt --output video.mp4 --format 16:9'},
+  {platform:'linkedin', type:'code', title:'专业风格', desc:'Professional clean', cmd:'python scripts/generate.py --mode code --script assets/templates/code/linkedin/professional.py --output video.mp4 --format 16:9'},
+  // Bilibili
+  {platform:'bilibili', type:'text', title:'片头', desc:'欢迎来到我的频道', cmd:'python scripts/generate.py --mode template --input assets/templates/text/bilibili/intro.txt --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'text', title:'教程目录', desc:'目录导航', cmd:'python scripts/generate.py --mode template --input assets/templates/text/bilibili/tutorial_outline.txt --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'text', title:'片尾', desc:'一键三连', cmd:'python scripts/generate.py --mode template --input assets/templates/text/bilibili/outro.txt --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'text', title:'爆款钩子', desc:'超详细教程', cmd:'python scripts/generate.py --mode template --input assets/templates/text/bilibili/viral_hook.txt --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'text', title:'干货教程', desc:'从零到精通', cmd:'python scripts/generate.py --mode template --input assets/templates/text/bilibili/干货教程.txt --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'code', title:'蓝色波浪', desc:'BILI BILI', cmd:'python scripts/generate.py --mode code --script assets/templates/code/bilibili/blue_wave.py --output video.mp4 --format 16:9'},
+  {platform:'bilibili', type:'code', title:'一键三连', desc:'点赞投币收藏', cmd:'python scripts/generate.py --mode code --script assets/templates/code/bilibili/three_clicks.py --output video.mp4 --format 9:16'},
+  // Pinterest
+  {platform:'pinterest', type:'text', title:'DIY教程', desc:'Step by step', cmd:'python scripts/generate.py --mode template --input assets/templates/text/pinterest/diy_tutorial.txt --output video.mp4 --format 9:16'},
+  {platform:'pinterest', type:'text', title:'食谱', desc:'Easy recipe', cmd:'python scripts/generate.py --mode template --input assets/templates/text/pinterest/recipe.txt --output video.mp4 --format 9:16'},
+  {platform:'pinterest', type:'text', title:'清单合集', desc:'10 apps you need', cmd:'python scripts/generate.py --mode template --input assets/templates/text/pinterest/listicle.txt --output video.mp4 --format 9:16'},
+  {platform:'pinterest', type:'code', title:'温暖美学', desc:'Warm aesthetic', cmd:'python scripts/generate.py --mode code --script assets/templates/code/pinterest/warm_aesthetic.py --output video.mp4 --format 9:16'},
+  // X
+  {platform:'x', type:'text', title:'推文预览', desc:'Thread preview', cmd:'python scripts/generate.py --mode template --input assets/templates/text/x/thread_preview.txt --output video.mp4 --format 16:9'},
+  {platform:'x', type:'text', title:'观点争议', desc:'Hot take', cmd:'python scripts/generate.py --mode template --input assets/templates/text/x/hot_take.txt --output video.mp4 --format 16:9'},
+  {platform:'x', type:'code', title:'极简 bold', desc:'Minimal bold', cmd:'python scripts/generate.py --mode code --script assets/templates/code/x/minimal_bold.py --output video.mp4 --format 16:9'},
+  // Facebook
+  {platform:'facebook', type:'text', title:'活动公告', desc:'You\'re invited', cmd:'python scripts/generate.py --mode template --input assets/templates/text/facebook/event_announce.txt --output video.mp4 --format 16:9'},
+  {platform:'facebook', type:'text', title:'客户评价', desc:'Testimonial', cmd:'python scripts/generate.py --mode template --input assets/templates/text/facebook/testimonial.txt --output video.mp4 --format 16:9'},
+  {platform:'facebook', type:'code', title:'品牌蓝', desc:'Facebook blue', cmd:'python scripts/generate.py --mode code --script assets/templates/code/facebook/blue_brand.py --output video.mp4 --format 16:9'},
+  // 通用
+  {platform:'all', type:'code', title:'脉冲圆形', desc:'Pulsing circle', cmd:'python scripts/generate.py --mode code --script assets/templates/code/pulse_circle.py --output video.mp4'},
+  {platform:'all', type:'code', title:'旋转方块', desc:'Rotating square', cmd:'python scripts/generate.py --mode code --script assets/templates/code/rotating_square.py --output video.mp4'},
+  {platform:'all', type:'code', title:'加载转圈', desc:'Loading spinner', cmd:'python scripts/generate.py --mode code --script assets/templates/code/loading_spinner.py --output video.mp4'},
+  {platform:'all', type:'code', title:'数据计数', desc:'Data counter', cmd:'python scripts/generate.py --mode code --script assets/templates/code/data_counter.py --output video.mp4'},
+  {platform:'all', type:'code', title:'品牌片头', desc:'Brand intro', cmd:'python scripts/generate.py --mode code --script assets/templates/code/brand_intro.py --output video.mp4'},
+  {platform:'all', type:'code', title:'三角形', desc:'Rotating triangle', cmd:'python scripts/generate.py --mode code --script assets/templates/code/triangle.py --output video.mp4'},
+  {platform:'all', type:'code', title:'五角星', desc:'Spinning star', cmd:'python scripts/generate.py --mode code --script assets/templates/code/star.py --output video.mp4'},
+  {platform:'all', type:'code', title:'粒子爆炸', desc:'Particle burst', cmd:'python scripts/generate.py --mode code --script assets/templates/code/particles.py --output video.mp4'},
+];
+
+let currentFilter = 'all';
+
+function renderTemplates(list) {
+  const grid = document.getElementById('templateGrid');
+  grid.innerHTML = list.map((t, i) => 
+    <div class="card" onclick="showModal()">
+      <div class="card-platform"></div>
+      <div class="card-title"></div>
+      <div class="card-desc"></div>
+      <span class="card-tag "></span>
+    </div>
+  ).join('');
+}
+
+function filterPlatform(p) {
+  currentFilter = p;
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const filtered = p === 'all' ? templates : templates.filter(t => t.platform === p);
+  renderTemplates(filtered);
+}
+
+function searchTemplates(q) {
+  const q2 = q.toLowerCase();
+  const filtered = templates.filter(t =>
+    t.title.toLowerCase().includes(q2) ||
+    t.desc.toLowerCase().includes(q2) ||
+    t.platform.toLowerCase().includes(q2)
+  );
+  renderTemplates(filtered);
+}
+
+function showModal(i) {
+  const t = templates[i];
+  document.getElementById('modalTitle').textContent = t.title;
+  document.getElementById('modalDesc').textContent = t.desc + '  (' + t.platform + ' · ' + (t.type === 'text' ? '文本' : '动画') + ')';
+  document.getElementById('modalCommand').textContent = t.cmd;
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+function copyCommand() {
+  const cmd = document.getElementById('modalCommand').textContent;
+  navigator.clipboard.writeText(cmd);
+  const btn = document.querySelector('.btn-copy');
+  btn.textContent = '已复制!';
+  setTimeout(() => btn.textContent = '复制命令', 1500);
+}
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeModal();
+});
+
+renderTemplates(templates);
+</script>
+</body>
+</html>
