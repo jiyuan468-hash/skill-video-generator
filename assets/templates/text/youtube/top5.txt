@@ -1,0 +1,11 @@
+# Platform: YouTube
+# Format: 16:9 (1920x1080)
+# Type: Review/Ranking video
+# Duration: ~20s total (4s per scene)
+
+Top 5 Tips for Better Code
+Number 5: Write clean comments
+Number 4: Use meaningful variable names
+Number 3: Break functions into small pieces
+Number 2: Test as you go
+Number 1: Read other people's code

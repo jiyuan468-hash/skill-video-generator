@@ -1,0 +1,10 @@
+# Platform: YouTube
+# Format: 16:9 (1920x1080)
+# Type: How-to tutorial steps
+# Duration: ~15s total (3s per scene)
+
+Step 1: Open your project settings
+Step 2: Navigate to the API section
+Step 3: Generate your new key
+Step 4: Save and test your connection
+Step 5: Deploy to production

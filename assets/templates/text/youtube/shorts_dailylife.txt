@@ -1,0 +1,10 @@
+# Platform: YouTube Shorts
+# Format: 9:16 (1080x1920)
+# Type: Behind the scenes / day in life
+# Duration: ~12s total (2s per scene)
+
+A day in the life of a developer
+Morning routine
+Coding session
+Code review
+Ship it

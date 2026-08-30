@@ -1,0 +1,9 @@
+# Platform: YouTube Shorts
+# Format: 9:16 (1080x1920)
+# Type: Quick tip / hook
+# Duration: ~10s total (2s per scene)
+
+You've been using this WRONG
+Here's the right way in 10 seconds
+[Show tip]
+Save this for later!

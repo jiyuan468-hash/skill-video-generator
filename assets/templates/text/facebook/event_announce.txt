@@ -1,0 +1,12 @@
+# Platform: Facebook
+# Format: 16:9 (1280x720)
+# Type: Event announcement
+# Duration: ~15s total (3s per scene)
+
+You're invited!
+Join us for [Event name]
+Date: [Date]
+Time: [Time]
+Location: [Location or Online]
+RSVP now
+"# Facebook

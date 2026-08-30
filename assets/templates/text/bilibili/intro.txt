@@ -1,0 +1,11 @@
+# Platform: Bilibili
+# Format: 16:9 (1920x1080)
+# Type: 开场 / 片头
+# Duration: ~10s total (2.5s per scene)
+
+欢迎来到我的频道
+今天是[主题]专题
+感谢大家的支持
+别忘了一键三连
+我们开始吧
+"# Bilibili

@@ -1,0 +1,9 @@
+# Platform: YouTube
+# Format: 16:9 (1920x1080)
+# Type: Long-form video outro
+# Duration: ~15s total (5s per scene)
+
+Thanks for watching
+If you found this helpful, give it a thumbs up
+Don't forget to subscribe for more content
+Check out the next video on your screen

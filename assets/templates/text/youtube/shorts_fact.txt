@@ -1,0 +1,9 @@
+# Platform: YouTube Shorts
+# Format: 9:16 (1080x1920)
+# Type: Fun fact / trivia
+# Duration: ~8s total (2s per scene)
+
+Did you know?
+This coding trick saves 50% time
+Try it on your next project
+Follow for more tips!

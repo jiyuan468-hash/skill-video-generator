@@ -1,0 +1,11 @@
+# Platform: Instagram Feed
+# Format: 1:1 (1080x1080)
+# Type: Tips carousel
+# Duration: ~10s total (2s per scene)
+
+5 Hacks to Boost Productivity
+1. Time block your day
+2. Eliminate distractions
+3. Take regular breaks
+4. Set clear goals
+5. Review and adjust

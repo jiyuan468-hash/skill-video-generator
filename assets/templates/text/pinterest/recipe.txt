@@ -1,0 +1,11 @@
+# Platform: Pinterest
+# Format: 9:16 (1000x1500) tall portrait
+# Type: Recipe / food
+# Duration: ~25s total (5s per scene)
+
+Easy 3-Ingredient Recipe
+Ingredients: flour, eggs, butter
+Mix until smooth
+Bake at 350°F for 25 min
+Serve and enjoy!
+"# Pinterest

@@ -1,0 +1,11 @@
+# Platform: LinkedIn
+# Format: 16:9 (1280x720)
+# Type: Case study / results
+# Duration: ~20s total (4s per scene)
+
+How we increased revenue by 40%
+The challenge: declining sales
+Our approach: data-driven strategy
+The result: record growth
+Read the full case study
+"# LinkedIn

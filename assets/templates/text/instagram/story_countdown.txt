@@ -1,0 +1,10 @@
+# Platform: Instagram Stories
+# Format: 9:16 (1080x1920)
+# Type: Countdown / announcement
+# Duration: ~8s total (2s per scene)
+
+Something big is coming
+Save the date
+[Date]
+Get ready!
+Link in bio

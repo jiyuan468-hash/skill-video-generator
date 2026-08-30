@@ -1,0 +1,9 @@
+# Platform: YouTube
+# Format: 16:9 (1920x1080)
+# Type: Long-form video intro
+# Duration: ~30s total (6s per scene)
+
+Welcome to my channel
+Today we're exploring: [TOPIC]
+[CHANNEL NAME] brings you in-depth tutorials every week
+Hit subscribe and the bell to never miss an episode

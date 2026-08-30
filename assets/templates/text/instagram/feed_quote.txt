@@ -1,0 +1,9 @@
+# Platform: Instagram Feed
+# Format: 1:1 (1080x1080)
+# Type: Carousel text / quote
+# Duration: ~5s total (1s per scene)
+
+Quote of the day
+Success is not final
+Failure is not fatal
+It is the courage to continue that counts

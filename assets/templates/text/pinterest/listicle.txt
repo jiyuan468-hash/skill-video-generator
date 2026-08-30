@@ -1,0 +1,12 @@
+# Platform: Pinterest
+# Format: 9:16 (1000x1500) tall portrait
+# Type: Listicle / collection
+# Duration: ~25s total (5s per scene)
+
+10 Apps Every Creator Needs
+Number 10: Canva
+Number 7: CapCut
+Number 5: Notion
+Number 3: Adobe Express
+Number 1: Your favorite tool
+"# Pinterest

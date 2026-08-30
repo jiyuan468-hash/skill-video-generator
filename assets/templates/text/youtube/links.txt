@@ -1,0 +1,9 @@
+# Platform: YouTube
+# Format: 16:9 (1920x1080)
+# Type: Video description / links
+# Duration: ~10s total (2.5s per scene)
+
+Links mentioned in this video
+GitHub: github.com/example
+Documentation: docs.example.com
+Community Discord: discord.gg/example

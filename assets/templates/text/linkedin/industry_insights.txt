@@ -1,0 +1,12 @@
+# Platform: LinkedIn
+# Format: 16:9 (1280x720)
+# Type: Industry insights
+# Duration: ~20s total (4s per scene)
+
+The future of [industry] is changing
+Here are 3 trends to watch
+Number 1: AI integration
+Number 2: Remote-first culture
+Number 3: Sustainability focus
+Which one excites you most?
+"# LinkedIn

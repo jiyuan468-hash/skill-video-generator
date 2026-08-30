@@ -1,0 +1,10 @@
+# Platform: Instagram Feed
+# Format: 4:5 (1080x1350) — tall portrait
+# Type: Personal brand / portfolio
+# Duration: ~8s total (2s per scene)
+
+Hi, I'm [NAME]
+I create [TYPE] content
+Helping [AUDIENCE] grow
+Follow my journey
+Let's connect

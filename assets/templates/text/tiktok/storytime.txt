@@ -1,0 +1,10 @@
+# Platform: TikTok
+# Format: 9:16 (1080x1920)
+# Type: Storytime / personal
+# Duration: ~20s total (4s per scene)
+
+Storytime: My first coding job
+I was terrified to apply
+Got rejected 10 times
+On the 11th try, I got in
+Keep going

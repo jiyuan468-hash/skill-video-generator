@@ -1,0 +1,12 @@
+# Platform: Facebook
+# Format: 16:9 (1280x720)
+# Type: Testimonial / review
+# Duration: ~15s total (3s per scene)
+
+What our customers say
+"I love this product!"
+- [Customer Name]
+"Changed my life"
+- [Customer Name]
+Join them today
+"# Facebook

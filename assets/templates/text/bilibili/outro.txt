@@ -1,0 +1,11 @@
+# Platform: Bilibili
+# Format: 16:9 (1920x1080)
+# Type: 片尾 / 总结
+# Duration: ~15s total (3s per scene)
+
+今天的分享就到这里
+感谢大家的观看
+如果对你有帮助
+请点赞投币收藏
+我们下期再见
+"# Bilibili

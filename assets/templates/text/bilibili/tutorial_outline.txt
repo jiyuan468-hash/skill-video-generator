@@ -1,0 +1,12 @@
+# Platform: Bilibili
+# Format: 16:9 (1920x1080)
+# Type: 教程步骤
+# Duration: ~20s total (4s per scene)
+
+教程目录
+第一部分：基础知识
+第二部分：进阶技巧
+第三部分：实战案例
+第四部分：常见问题
+开始学习吧
+"# Bilibili

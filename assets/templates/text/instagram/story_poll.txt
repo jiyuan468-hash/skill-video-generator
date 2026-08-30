@@ -1,0 +1,9 @@
+# Platform: Instagram Stories
+# Format: 9:16 (1080x1920)
+# Type: Poll / engagement
+# Duration: ~5s total (1.5s per scene)
+
+Which one do you prefer?
+Option A
+Option B
+Vote in the poll above!

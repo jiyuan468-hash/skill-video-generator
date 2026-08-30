@@ -1,0 +1,11 @@
+# Platform: Bilibili
+# Format: 16:9 (1920x1080)
+# Type: 热门/爆款内容
+# Duration: ~15s total (3s per scene)
+
+这可能是你见过
+最详细的[主题]教程
+从零开始
+循序渐进
+保证看完就能上手
+"# Bilibili
