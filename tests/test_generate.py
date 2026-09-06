@@ -73,7 +73,7 @@ def test_code_mode_generate():
 
 def test_platform_templates_exist():
     base = os.path.join(os.path.dirname(__file__), '..', 'assets', 'templates')
-    platforms = ['youtube', 'tiktok', 'instagram', 'linkedin', 'pinterest', 'x', 'facebook', 'bilibili']
+    platforms = ['youtube', 'tiktok', 'instagram', 'linkedin', 'pinterest', 'x', 'facebook', 'bilibili', 'douyin', 'xiaohongshu', 'kuaishou']
     for plat in platforms:
         text_dir = os.path.join(base, 'text', plat)
         assert os.path.isdir(text_dir), f'Missing text templates for {plat}'
