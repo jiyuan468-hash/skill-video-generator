@@ -69,7 +69,7 @@ var T[{"platform": "douyin", "type": "text", "title": "爆款钩子", "desc": "�
 var cur='all';
 var platforms=['all','douyin','tiktok','youtube','instagram','linkedin','bilibili','pinterest','x','facebook'];
 var pnames={all:'全部',douyin:'抖音',tiktok:'TikTok',youtube:'YouTube',instagram:'Instagram',linkedin:'LinkedIn',bilibili:'Bilibili',pinterest:'Pinterest',x:'X',facebook:'Facebook'};
-function renderNav(){var n=document.getElementById('nav');n.innerHTML=platforms.map(function(p){return '<button class="nav-btn'+(p===cur?' active':'')+'" onclick="filter(''+p+'')">'+pnames[p]+'</button>'}).join('');}
+function renderNav(){var n=document.getElementById('nav');n.innerHTML=platforms.map(function(p){return '<button class="nav-btn'+(p===cur?' active':'')+'" onclick="filter(' + p + ')'">'+pnames[p]+'</button>'}).join('');}
 function getFiltered(){var q=document.getElementById('searchInput').value.toLowerCase();return T.filter(function(t){var match=cur==='all'||t.platform===cur||t.platform==='all';if(!match)return false;if(!q)return true;return t.title.toLowerCase().indexOf(q)>-1||t.desc.toLowerCase().indexOf(q)>-1||t.platform.indexOf(q)>-1;});}
 function render(){var list=getFiltered();var g=document.getElementById('grid');g.innerHTML=list.map(function(t){var fi=T.indexOf(t);return '<div class="card" onclick="showModal('+fi+')"><div class="card-platform">'+pnames[t.platform]+'</div><div class="card-title">'+t.title+'</div><div class="card-desc">'+t.desc+'</div><span class="card-tag type-'+t.type+'">'+(t.type==='text'?'文本模板':'动画模板')+'</span></div>';}).join('');}
 function filter(p){cur=p;renderNav();render();}
